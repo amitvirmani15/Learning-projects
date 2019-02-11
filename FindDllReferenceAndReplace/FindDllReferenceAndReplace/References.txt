@@ -1,0 +1,6 @@
+\FrameworkWW\deploy\WanderingWiFi.Framework.Provider.dll    C:\stash\GemEnterprise\FrameworkWW\Core\src\ProviderSln\WanderingWiFi.Framework.Provider\WanderingWiFi.Framework.Provider.csproj
+\FrameworkWW\deploy\WanderingWiFi.Framework.EntityComponent.dll C:\stash\GemEnterprise\FrameworkWW\Core\src\EntityComponentSln\WanderingWiFi.Framework.EntityComponent\	WanderingWiFi.Framework.EntityComponent.csproj
+\FrameworkWW\deploy\WanderingWiFi.Framework.Entity.dll C:\stash\GemEnterprise\FrameworkWW\Core\src\EntitySln\WanderingWiFi.Framework.Entity\WanderingWiFi.Framework.Entity.csproj
+\FrameworkWW\deploy\WanderingWiFi.Framework.dll C:\stash\GemEnterprise\FrameworkWW\Component\src\FrameworkSln\WanderingWiFi.Framework\WanderingWiFi.Framework.csproj
+\FrameworkWW\deploy\WanderingWiFi.Framework.DBProviderImpl.dll C:\stash\GemEnterprise\FrameworkWW\Core\src\ProviderSln\WanderingWiFi.Framework.DBProviderImpl\WanderingWiFi.Framework.DBProviderImpl.csproj
+\FrameworkWW\deploy\WanderingWiFi.Framework.Business.dll C:\stash\GemEnterprise\FrameworkWW\Core\src\BusinessSln\WanderingWiFi.Framework.Business\WanderingWiFi.Framework.Business.csproj

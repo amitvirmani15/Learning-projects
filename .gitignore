@@ -1,3 +1,9 @@
 DecyrptAesString/.vs/
 DecyrptAesString/DecyrptAesString/bin/
 DecyrptAesString/DecyrptAesString/obj/
+bin/debug/
+bin/Debug/
+bin/release/
+bin/Release/
+[Bb]in/
+[Oo]bj/
