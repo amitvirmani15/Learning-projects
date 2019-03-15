@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis.MSBuild;
 using NLog.Fluent;
 using NLog;
@@ -28,12 +29,13 @@ namespace FindReferences
                throw new Exception();
             }
 
-
+            MSBuildLocator.RegisterDefaults();
             var dlls = FindReferencesFromFile();
 
             foreach (var dll in dlls)
             {
                 //LoadNewProjectDetails(dll.NewPath);
+                //LOadWOrkspace(@"C:\stash\GemEnterprise\Email\src\EmailSln\WanderingWiFi.AirWatch.Email\WanderingWiFi.AirWatch.Email.csproj", dll);
                 FindReferences(args[1], dll);
             }
         }
@@ -103,19 +105,116 @@ namespace FindReferences
             var files = Directory.GetFiles(path);
             foreach (var file in files)
             {
-                if (file.EndsWith(".csproj"))
+                if (file.EndsWith(".csproj") && dllName.NewPath.EndsWith(".csproj"))
                 {
                     ParseProjectFile(file, dllName);
                 }
+                if (dllName.NewPath.EndsWith(".dll"))
+                {
+                    ParseDllFile(file, dllName);
+                }
+            }
+        }
+
+        public static void ParseDllFile(string path, References dllName)
+        {
+            StreamReader reader = null;
+            //StreamWriter writer = null;
+            try
+            {
+                reader = new StreamReader(path);
+                //writer = new StreamWriter(path +".TEMP");
+                bool containsname = false;
+                string line, prevline = null;
+                MemoryStream stream = new MemoryStream();
+                reader.BaseStream.CopyTo(stream);
+                stream.Position = 0;
+                reader.BaseStream.Position = 0;
+
+                var string1 = new StreamReader(stream).ReadToEnd();
+                while ((line = reader.ReadLine()) != null)
+                {
+                    if (line.Contains(dllName.OldPath))
+                    {
+                        containsname = true;
+                        //var index = string1.IndexOf(prevline);
+
+                        //var stream = new MemoryStream();
+                        var doc = new XmlDocument();
+
+                        doc.LoadXml(string1);
+
+                        doc.Save(stream);
+                        stream.Position = 0;
+                        bool imported = false;
+                        //var nodes = doc?.DocumentElement?.SelectNodes("/Project/ItemGroup/Reference");
+
+
+                        foreach (XmlNode childnodes in doc.ChildNodes)
+                        {
+                            foreach (XmlNode node in childnodes.ChildNodes)
+                            {
+                                foreach (XmlNode reference in node.ChildNodes)
+                                {
+                                    if (reference.InnerText.Contains(dllName.OldPath))
+                                    {
+                                        
+                                        //reference.ParentNode?.RemoveChild(reference);
+                                        //reference.InnerXml = String.Empty;
+                                        //reference.RemoveAll();
+                                        break;
+                                    }
+                                }
+
+                            }
+                        }
+
+                        doc.InnerXml = doc.InnerXml.Replace(@" xmlns=""""", string.Empty);
+                        string1= GetProjectReference(doc, false);
+                        string1 = string1.Replace(@"utf-16", "utf-8");
+
+                        logger1.Info($"{dllName}");
+                        break;
+                    }
+
+                    if (!line.Contains("SpecificVersion"))
+                        prevline = line;
+                }
+
+                reader?.Close();
+                stream?.Close();
+                if (containsname)
+                {
+                    var streamwriter = new StreamWriter(path);
+                    var task = streamwriter.WriteAsync(string1);
+                    task.Wait();
+                    streamwriter.Close();
+                }
+                //writer.Close();
+                //if (containsname)
+                //{
+                //    File.Delete(path);
+                //    File.Copy(path + ".TEMP", path);
+                //    File.Delete(path + ".TEMP");
+                //}
+                //else
+                //{
+                //    File.Delete(path + ".TEMP");
+                //}
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.Message);
+            }
+            finally
+            {
+                reader?.Close();
             }
         }
 
         public static void ParseProjectFile(string path, References dllName)
         {
-            if (Directory.Exists(path + ".TEMP"))
-            {
-                File.Delete(path + ".TEMP");
-            }
             StreamReader reader = null;
             //StreamWriter writer = null;
             try
@@ -136,6 +235,7 @@ namespace FindReferences
                     {
                         containsname = true;
                         //var index = string1.IndexOf(prevline);
+                        
                         string1 = GetXmlFile(string1, dllName, path);
                         string1 = string1.Replace(@"utf-16", "utf-8");
 
@@ -338,20 +438,20 @@ namespace FindReferences
             }
         }
 
-        //private static void LOadWOrkspace(string path, References dllName)
-        //{
-        //    using (var ms = MSBuildWorkspace.Create())
-        //    {
-        //        var currentProject = ms.OpenProjectAsync(path).Result;
-        //        var aa = currentProject.GetCompilationAsync().Result;
-        //        var projectToAdd = ms.OpenProjectAsync(dllName.NewPath).Result;
+        private static void LOadWOrkspace(string path, References dllName)
+        {
+            using (var ms = MSBuildWorkspace.Create())
+            {
+                var currentProject = ms.OpenProjectAsync(path).Result;
+                var aa = currentProject.GetCompilationAsync().Result;
+                var projectToAdd = ms.OpenProjectAsync(dllName.NewPath).Result;
 
-        //        var currentProject1 =
-        //            currentProject.Solution.AddProject(projectToAdd.Name, projectToAdd.AssemblyName, projectToAdd.Language);
-        //        //var ss = currentProject1.GetCompilationAsync().Result;
-        //        var tt = currentProject1.Solution.Workspace.TryApplyChanges(currentProject.Solution);
-        //        ms.CloseSolution();
-        //    }
-        //}
+                var currentProject1 =
+                    currentProject.Solution.AddProject(projectToAdd.Name, projectToAdd.AssemblyName, projectToAdd.Language);
+                //var ss = currentProject1.GetCompilationAsync().Result;
+                var tt = currentProject1.Solution.Workspace.TryApplyChanges(currentProject.Solution);
+                ms.CloseSolution();
+            }
+        }
     }
 }

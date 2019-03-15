@@ -7,7 +7,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CACAAD93-F99D-4796-9FEF-C70A720CFCC0}</ProjectGuid>
+    <ProjectGuid>{DF62368C-2756-4127-87E2-A40D4AC74C90}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>FindReferences</RootNamespace>
     <AssemblyName>FindReferences</AssemblyName>
@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Locator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9dff12846e04bfbd, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Build.Locator.1.1.2\lib\net46\Microsoft.Build.Locator.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeAnalysis, Version=2.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeAnalysis.Common.2.10.0\lib\netstandard1.3\Microsoft.CodeAnalysis.dll</HintPath>
     </Reference>
@@ -62,6 +65,10 @@
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild, Version=2.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeAnalysis.Workspaces.MSBuild.2.10.0\lib\net46\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.Setup.Configuration.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">

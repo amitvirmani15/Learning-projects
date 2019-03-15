@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindReferences", "FindReferences\FindReferences.csproj", "{CACAAD93-F99D-4796-9FEF-C70A720CFCC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindDllReferenceAndReplace", "FindDllReferenceAndReplace\FindDllReferenceAndReplace.csproj", "{DF62368C-2756-4127-87E2-A40D4AC74C90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +15,10 @@ Global
 		{CACAAD93-F99D-4796-9FEF-C70A720CFCC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CACAAD93-F99D-4796-9FEF-C70A720CFCC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CACAAD93-F99D-4796-9FEF-C70A720CFCC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF62368C-2756-4127-87E2-A40D4AC74C90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF62368C-2756-4127-87E2-A40D4AC74C90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF62368C-2756-4127-87E2-A40D4AC74C90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF62368C-2756-4127-87E2-A40D4AC74C90}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
