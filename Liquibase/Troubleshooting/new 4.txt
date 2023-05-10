@@ -1,0 +1,31 @@
+--liquibase formatted sql
+--changeset your.name:01 labels:JIRA-7658,2021-Q1 context:UAT or PROD
+CREATE TABLE table_a (
+id int primary key,
+name varchar(50) not null
+)
+--changeset your.name:01_data labels:JIRA-7658,2021-Q1 context:UAT or PROD
+INSERT INTO table_a values (1, 'test 1');
+
+--changeset your.name:02 labels:JIRA-9854,2021-Q1 context:UAT or PROD runOnChange:true
+CREATE TABLE table_b (
+id int primary key,
+name varchar(50) not null
+)
+--changeset your.name:02_alter labels:JIRA-9854,2021-Q1,ignored context:UAT or PROD
+ALTER TABLE table_b add column name2 varchar(50) not null
+--changeset your.name:03 labels:JIRA-2228
+CREATE TABLE table_c (
+id int primary key,
+name varchar(50) not null
+)
+--changeset your.name:04 labels:JIRA-2525 context:UAT or PROD
+CREATE TABLE table_d (
+id int primary key,
+name varchar(50) not null
+)
+--changeset your.name:05 labels:JIRA-6759 context:UAT or PROD
+CREATE TABLE table_e (
+id int primary key,
+name varchar(50) not null
+)

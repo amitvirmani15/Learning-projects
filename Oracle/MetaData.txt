@@ -1,0 +1,9 @@
+--Returns DDL script for table created in schema
+--Along with foreign key constants
+select dbms_metadata.get_ddl('TABLE','CERTIFICATE') from dual;
+
+--Returns grant scheme for system.
+select SYS.DBMS_METADATA.GET_QUERY('OBJECT_GRANT','CERTIFICATE') from dual;
+
+--To open handle for table
+select dbms_metadata.open('TABLE') from dual;

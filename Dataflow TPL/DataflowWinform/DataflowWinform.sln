@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataflowWinform", "DataflowWinform\DataflowWinform.csproj", "{2B1F716E-660E-46AF-B559-32E482649B53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B1F716E-660E-46AF-B559-32E482649B53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B1F716E-660E-46AF-B559-32E482649B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B1F716E-660E-46AF-B559-32E482649B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B1F716E-660E-46AF-B559-32E482649B53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A530ABF5-14AA-44DA-A9A4-62A554F1F112}
+	EndGlobalSection
+EndGlobal

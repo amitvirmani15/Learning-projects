@@ -8,3 +8,5 @@ bin/Release/
 [Bb]in/
 [Oo]bj/
 [Pp]ackages
+.git/
+.vs/
